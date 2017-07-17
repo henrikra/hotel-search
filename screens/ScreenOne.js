@@ -5,10 +5,11 @@ import {
   Text,
   View,
   Button,
+  Image,
 } from 'react-native';
-import Navigator from 'native-navigation';
+import Navigator, { SharedElement, SharedElementGroup } from 'native-navigation';
 import Screen from '../components/Screen';
-import { SCREENONE } from '../routes';
+import { SCREENONE, SCREENTWO } from '../routes';
 
 export default class ScreenOne extends Component {
   render() {
@@ -42,6 +43,18 @@ export default class ScreenOne extends Component {
             title="Dismiss"
             onPress={() => Navigator.dismiss()}
           />
+          <Button
+            title="Screen two"
+            onPress={() => Navigator.push(SCREENTWO, {id: 1}, {transitionGroup: "123"})}
+          />
+          <SharedElementGroup id="123">
+            <SharedElement
+              type="poster"
+              typeId="123"
+            >
+              <Image source={{uri: 'https://randomuser.me/api/portraits/men/83.jpg'}} style={{width: 50, height: 50}} />
+            </SharedElement>
+          </SharedElementGroup>
         </View>
       </Screen>
     );
